@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import viewNav from '../views/nav';
+import viewPage from '../views/page';
 import viewListUsers from '../views/list-users';
 
 const Search = class {
@@ -30,14 +30,11 @@ const Search = class {
 
   render() {
     return `
-      <div class="container">
-        <div class="row">
-          <div class="col-12">${viewNav()}</div>
-        </div>
+      ${viewPage(`
         <div class="row list-users">
-          ${viewListUsers(this.data)}
-        </div>
+        ${viewListUsers(this.data)}
       </div>
+      `)}
     `;
   }
 
