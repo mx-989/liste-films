@@ -1,35 +1,14 @@
 import axios from 'axios';
 import ViewFilms from '../views/film';
+import Navbar from '../views/nav';
+import Nav from './Search';
 
-const Nav = class Nav {
-  constructor(data, params) {
+const ListMovies = class ListMovies {
+  constructor(params) {
     this.el = document.querySelector('#app');
-    this.movies = data;
     this.params = params;
+    this.movies = [];
     this.run();
-  }
-
-  navbar() {
-    const nav = document.querySelector('.navbar');
-    const searchBar = nav.querySelector('#searchBar');
-    searchBar.addEventListener('keyup', async () => {
-      const value = searchBar.value.toLowerCase();
-      if (value === '') {
-        this.title = document.querySelector('.title h1');
-        this.container = document.querySelector('.container-fluid');
-        this.title.innerHTML = 'Popular Movies';
-        this.container.innerHTML = ViewFilms(this.movies);
-        this.modalOpener();
-      } else {
-        const movies = await this.search(value);
-        const filterMovies = movies.filter((m) => m.title.toLowerCase().includes(value));
-        this.title = document.querySelector('.title h1');
-        this.container = document.querySelector('.container-fluid');
-        this.title.innerHTML = 'Resulats';
-        this.container.innerHTML = ViewFilms(filterMovies);
-        this.modalOpener();
-      }
-    });
   }
 
   createModal(movieId) {
@@ -89,23 +68,29 @@ const Nav = class Nav {
     });
   }
 
-  async search(film) {
-    const AuthStr = 'Bearer '.concat('eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5MDA0ZTEyNWQxYTRjZTczZGY3ZGQ2MDljYjUxMTFmYSIsIm5iZiI6MTczNjg0Mjk5My43MDIwMDAxLCJzdWIiOiI2Nzg2MWVmMWM4MWFjYWE2M2RiYzIyOWMiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.ZGNZAN_Svay8Dks8adkEH96nxPXj_VheEAi0F47E8kU');
-    try {
-      const res = await axios
-        .get(`https://api.themoviedb.org/3/search/movie?query=${film}`, {
-          headers: { Authorization: AuthStr }, params: { language: 'fr-FR' }
-        });
-      return res.data.results;
-    } catch (error) {
-      return [];
-    }
+  render() {
+    return `
+    ${Navbar()}
+    <div class="title">
+      <h1>FILMS DU MOMENT</h1>
+    </div> 
+    <div class="container-fluid">
+        ${ViewFilms(this.movies)}
+    </div>
+    `;
   }
 
   run() {
-    this.navbar();
-    this.modalOpener();
+    const AuthStr = 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiYTM5YTJhZTU1NGFmYWEzM2RmZGI3Y2FjMzVmMDg3YSIsIm5iZiI6MTczNjg0Njk4NS4wMTQwMDAyLCJzdWIiOiI2Nzg2MmU4OTYyZThmYTYyOWRiYjA2MDgiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.v2iGZi0NCaTVu9MFdtly5Yc3IP6uZLvfW6W5atLZcEE';
+    axios.get('https://api.themoviedb.org/3/movie/popular', { headers: { Authorization: AuthStr }, params: { language: 'fr-FR' } })
+      .then((res) => {
+        const { data } = res;
+        this.movies = data.results;
+        this.el.innerHTML = this.render();
+        new Nav(this.movies, this.params);
+        this.modalOpener();
+      });
   }
 };
 
-export default Nav;
+export default ListMovies;
