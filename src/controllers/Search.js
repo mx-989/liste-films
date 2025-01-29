@@ -33,6 +33,9 @@ const Nav = class Nav {
   }
 
   createModal(movieId) {
+    if (document.querySelector('.modal')) {
+      return;
+    }
     const modal = document.createElement('div');
     modal.classList.add('modal');
     modal.innerHTML = `
@@ -90,7 +93,7 @@ const Nav = class Nav {
   }
 
   async search(film) {
-    const AuthStr = 'Bearer '.concat('eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5MDA0ZTEyNWQxYTRjZTczZGY3ZGQ2MDljYjUxMTFmYSIsIm5iZiI6MTczNjg0Mjk5My43MDIwMDAxLCJzdWIiOiI2Nzg2MWVmMWM4MWFjYWE2M2RiYzIyOWMiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.ZGNZAN_Svay8Dks8adkEH96nxPXj_VheEAi0F47E8kU');
+    const AuthStr = 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiYTM5YTJhZTU1NGFmYWEzM2RmZGI3Y2FjMzVmMDg3YSIsIm5iZiI6MTczNjg0Njk4NS4wMTQwMDAyLCJzdWIiOiI2Nzg2MmU4OTYyZThmYTYyOWRiYjA2MDgiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.v2iGZi0NCaTVu9MFdtly5Yc3IP6uZLvfW6W5atLZcEE';
     try {
       const res = await axios
         .get(`https://api.themoviedb.org/3/search/movie?query=${film}`, {

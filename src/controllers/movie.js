@@ -13,7 +13,7 @@ const Movie = class Movie {
   render() {
     return `
         <a href="/list-film" class="btn btn-primary">Home</a>
-        <a href="/watchlist" class="btn btnwatch btn-primary">Watchlist</a>
+        <a href="/lists" class="btn btnwatch btn-primary">Mes Listes</a>
         <div class="container-fluid">
             ${Movies(this.movies, this.reviews)}
         </div>
@@ -21,7 +21,7 @@ const Movie = class Movie {
   }
 
   async search() {
-    const AuthStr = 'Bearer '.concat('eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5MDA0ZTEyNWQxYTRjZTczZGY3ZGQ2MDljYjUxMTFmYSIsIm5iZiI6MTczNjg0Mjk5My43MDIwMDAxLCJzdWIiOiI2Nzg2MWVmMWM4MWFjYWE2M2RiYzIyOWMiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.ZGNZAN_Svay8Dks8adkEH96nxPXj_VheEAi0F47E8kU');
+    const AuthStr = 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiYTM5YTJhZTU1NGFmYWEzM2RmZGI3Y2FjMzVmMDg3YSIsIm5iZiI6MTczNjg0Njk4NS4wMTQwMDAyLCJzdWIiOiI2Nzg2MmU4OTYyZThmYTYyOWRiYjA2MDgiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.v2iGZi0NCaTVu9MFdtly5Yc3IP6uZLvfW6W5atLZcEE';
     try {
       const res = await axios.get(`https://api.themoviedb.org/3/movie/${this.params.id}`, {
         headers: { Authorization: AuthStr }, params: { language: 'fr-FR' }
@@ -34,7 +34,7 @@ const Movie = class Movie {
   }
 
   async review() {
-    const AuthStr = 'Bearer '.concat('eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5MDA0ZTEyNWQxYTRjZTczZGY3ZGQ2MDljYjUxMTFmYSIsIm5iZiI6MTczNjg0Mjk5My43MDIwMDAxLCJzdWIiOiI2Nzg2MWVmMWM4MWFjYWE2M2RiYzIyOWMiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.ZGNZAN_Svay8Dks8adkEH96nxPXj_VheEAi0F47E8kU');
+    const AuthStr = 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiYTM5YTJhZTU1NGFmYWEzM2RmZGI3Y2FjMzVmMDg3YSIsIm5iZiI6MTczNjg0Njk4NS4wMTQwMDAyLCJzdWIiOiI2Nzg2MmU4OTYyZThmYTYyOWRiYjA2MDgiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.v2iGZi0NCaTVu9MFdtly5Yc3IP6uZLvfW6W5atLZcEE';
     try {
       const res = await axios.get(`https://api.themoviedb.org/3/movie/${this.params.id}/reviews`, {
         headers: { Authorization: AuthStr }

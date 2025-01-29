@@ -1,10 +1,12 @@
-# Hello World
+# My Movie List
+
+Une interface de gestion de listes de visionnage pour cinéphiles.
 
 ## Installation
 
-Use the package manager [npm](https://www.npmjs.com/) to install helloworld.
+Installez en utilisant le gestionnaire de package [npm](https://www.npmjs.com/).
 
-Use node v20 use :
+Installez nod20 :
 ```bash
 nvm install 20
 ```
@@ -13,21 +15,24 @@ nvm install 20
 npm i
 ```
 
-## Usage
+## Utilisation
 
-Start the application dev with :
+Lancez l'application avec :
 
 ```bash
 npm run start
 ```
 
-Created the dist with :
+Si vous obtenez l'erreur ``You need to install 'webpack-dev-server'``, exécutez cette commande dans le dossier du projet :
 
 ```bash
-npm run dist
+npm install webpack-dev-server --save-dev
 ```
+puis reprenez à l'étape précédente.
 
-Analyse the coding rules with :
+
+
+Vous pouvez vérifiez les erreur des règles de code avec :
 
 ```bash
 npm run lint

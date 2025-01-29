@@ -8,7 +8,7 @@ const Lists = class Lists {
   async render() {
     return `
     <a href="/list-film" class="btn btn-primary">Accueil</a>
-    <div class="row">
+    <div class="row listeliste">
        <a class="btn btn-primary" href="/watchlist">À Voir</a>
        <a class="btn btn-primary" href="/favorites">Mes Favoris</a>
        <a class="btn btn-primary" href="/seen">Déjà Vu</a>

@@ -20,7 +20,7 @@ export default (movies, reviews) => `
     <h5>${movies.overview}</h5>
     </div>
     <div class="reviews">
-    <h1>Reviews : </h1>
+    <h1>Critiques et Avis : </h1>
       ${reviews.results.slice(0, 4).map((review) => `
       <div class="review">
         <h3>${review.author}</h3>

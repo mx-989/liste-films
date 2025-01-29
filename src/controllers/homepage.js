@@ -12,6 +12,9 @@ const ListMovies = class ListMovies {
   }
 
   createModal(movieId) {
+    if (document.querySelector('.modal')) {
+      return;
+    }
     const modal = document.createElement('div');
     modal.classList.add('modal');
     modal.innerHTML = `
